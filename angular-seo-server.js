@@ -47,7 +47,7 @@ server.listen(port, function (request, response) {
     var url = urlPrefix
       + request.url.slice(1, cuttingIndex);
     console.log(url);
-    rrenderHtml(url + '#!', function(html) {
+    renderHtml(url /* + '#!' */, function(html) {
         response.statusCode = 200;
         response.write(html);
         response.close();
