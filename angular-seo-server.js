@@ -43,10 +43,11 @@ var renderHtml = function(url, cb) {
 
 server.listen(port, function (request, response) {
     var route = parse_qs(request.url)._escaped_fragment_;
+    var cuttingIndex = request.url.indexOf('?') === -1 ? request.url.length : request.url.indexOf('?');
     var url = urlPrefix
-      + request.url.slice(1, request.url.indexOf('?'))
-      + '#!' + decodeURIComponent(route);
-    renderHtml(url, function(html) {
+      + request.url.slice(1, cuttingIndex);
+    console.log(url);
+    rrenderHtml(url + '#!', function(html) {
         response.statusCode = 200;
         response.write(html);
         response.close();
